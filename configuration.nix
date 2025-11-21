@@ -5,21 +5,26 @@
 { config, lib, pkgs, ... }:
 
 {
+
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
+  system.stateVersion = "24.11";
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
   boot.loader.systemd-boot.configurationLimit = 5;
 
   # Add Windows to boot menu for Dual Boot
   boot.loader.grub.useOSProber = true;
 
-  boot.kernelModules = [ "uvcvideo" "snd-usb-audio" ];
+  boot.supportedFilesystems = [ "ntfs" ];
+
+  boot.kernelModules = [ "uvcvideo" "snd-usb-audio" "bluetooth" "btusb"];
 
   services.udev.extraRules = ''
   SUBSYSTEM=="video4linux", MODE="0666"
@@ -63,15 +68,36 @@
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;  # Optional: auto-power on at boot
-  
-  # Enable Bluetooth manager in GNOME
   services.blueman.enable = true;  # Bluetooth manager GUI
+  
+  hardware.enableRedistributableFirmware = true;
 
-  hardware.bluetooth.settings = {
-    General = {
-      Enable = "Source,Sink,Media,Socket";
+  hardware.firmware = [ pkgs.linux-firmware ]; 
+
+  # Force btusb module settings
+  boot.extraModprobeConfig = ''
+    options btusb reset=1 enable_autosuspend=0
+  '';
+
+  # Ensure Bluetooth is unblocked at boot
+  systemd.services.unblock-bluetooth = {
+    description = "Unblock Bluetooth at boot";
+    after = [ "bluetooth.service" ];
+    before = [ "bluetooth-target.target" ];
+    wantedBy = [ "bluetooth.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = [
+        "${pkgs.util-linux}/bin/rfkill unblock bluetooth"
+        "${pkgs.bluez}/bin/hciconfig hci0 up"
+      ];
+      RemainAfterExit = true;
     };
   };
+
+  boot.initrd.compressor = "gzip";
+  boot.initrd.systemd.enable = true;
+  boot.kernelParams = [ "btusb.enable_autosuspend=0" ];
 
   programs.gamemode.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -94,6 +120,38 @@
     enable32Bit = true;
   };
 
+  # Force X11 instead of Wayland
+  services.xserver.displayManager.gdm.wayland = false;
+ 
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-kde
+    ];
+    # Explicitly configure which portal to use for which interface
+    config = {
+      common = {
+        default = [ "gnome" "gtk" ];
+      };
+      # Allow KDE portal for screen capture specifically
+      x-cinnamon = {
+        default = [ "gnome" "gtk" ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" "kde" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "gnome" "kde" ];
+      };
+    };
+  };
+
+  # Enable PipeWire (GNOME's default audio/video server)
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
   networking = {
     hostName = "blackbridge";
     networkmanager.enable = true;
@@ -108,7 +166,7 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 30d";
+    options = "--delete-older-than 7d";
   };
 
   users.users.caverne = {
@@ -161,10 +219,12 @@
     mpv
     twitch-tui
     xclip
+    librewolf
 
     citrix_workspace 
     zoom-us
     v4l-utils
+    xdg-desktop-portal-kde
 
 
     # -- NEOVIM
