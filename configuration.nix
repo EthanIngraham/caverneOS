@@ -6,12 +6,13 @@
 
 {
 
-
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
+  imports = [
+    ./hardware-configuration.nix
+    (import "${builtins.fetchTarball {
+      url = "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
+    }}/nixos")
+  ];
+  
   system.stateVersion = "24.11";
 
   # Use the systemd-boot EFI boot loader.
@@ -183,8 +184,11 @@
 
   services.xserver = {
     enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    windowManager.i3.enable = true;
+  };
+
+  services.displayManager = {
+    defaultSession = "none+i3";
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -224,6 +228,7 @@
     twitch-tui
     xclip
     librewolf
+    dmenu
 
     citrix_workspace 
     zoom-us
@@ -292,5 +297,84 @@
   }; 
  
   programs.ssh.startAgent = true;
+
+  home-manager.backupFileExtension = "backup";
+
+  # Configure Home Manager for your user
+  home-manager.users.caverne = { pkgs, ... }: {
+  home.stateVersion = "24.11";
+  programs.home-manager.enable = true;
+  
+  home.packages = with pkgs; [
+    librewolf
+    ghostty
+    dmenu
+    feh  # Make sure this is here
+  ];
+  
+  xsession.windowManager.i3 = {
+    enable = true;
+    
+    config = {
+      modifier = "Mod4";
+      terminal = "ghostty";
+      bars = [];
+
+    window = {
+      titlebar = false;
+      border = 1;
+    };
+
+      keybindings = let
+        mod = "Mod4";
+      in {
+        # Launch apps (but only when you press the key)
+  "${mod}+b" = "exec librewolf";
+  "${mod}+z" = "exec zoom-us";
+  "${mod}+c" = "exec selfservice";  # Citrix Workspace
+  "${mod}+Return" = "exec ghostty";
+  "${mod}+d" = "exec dmenu_run";
+  
+  # Switch to workspace (just goes there, doesn't launch anything)
+  "${mod}+1" = "workspace number 1";
+  "${mod}+2" = "workspace number 2";
+  "${mod}+3" = "workspace number 3";
+  "${mod}+4" = "workspace number 4";
+  "${mod}+5" = "workspace number 5";
+  "${mod}+6" = "workspace number 6";
+  "${mod}+7" = "workspace number 7";
+  "${mod}+8" = "workspace number 8";
+  "${mod}+9" = "workspace number 9";
+  "${mod}+0" = "workspace number 10";
+  
+  # Move window to workspace
+  "${mod}+Shift+1" = "move container to workspace number 1";
+  "${mod}+Shift+2" = "move container to workspace number 2";
+  "${mod}+Shift+3" = "move container to workspace number 3";
+  "${mod}+Shift+4" = "move container to workspace number 4";
+  "${mod}+Shift+5" = "move container to workspace number 5";
+
+  "${mod}+Down" = "workspace back_and_forth";
+
+  "${mod}+Shift+Left" = "move workspace to output left";
+  "${mod}+Shift+Right" = "move workspace to output right";
+
+  # Window management
+  "${mod}+Shift+q" = "kill";
+  "${mod}+f" = "fullscreen toggle";
+  "${mod}+Shift+e" = "exec i3-msg exit";
+      };
+
+      
+      startup = [
+        { command = "feh --bg-scale ~/Pictures/lockscreen.jpg"; always = true; notification = false; }
+      ];
+    };
+  };
+};
 }
+  
+  
+
+
 
