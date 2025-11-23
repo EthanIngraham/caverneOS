@@ -1,1 +1,13 @@
 result
+result-*
+
+*.backup
+
+*.swp
+*.swo
+*~
+.*.swp
+.*.swo
+
+.DS_Store
+Thumbs.db
