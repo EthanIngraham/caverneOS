@@ -4,6 +4,7 @@
 
   imports = [
     ./hmodules/applications/packages.nix
+    ./hmodules/applications/anki/anki.nix
     ./hmodules/desktop/i3.nix
   ];
 

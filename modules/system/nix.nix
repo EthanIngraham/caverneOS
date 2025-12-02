@@ -24,6 +24,9 @@
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
-  
+
+  #todo move
+  programs.firejail.enable = true;
+
   home-manager.backupFileExtension = "backup";
 }

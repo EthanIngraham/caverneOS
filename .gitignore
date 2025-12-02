@@ -1,3 +1,6 @@
+hmodules/applications/packettracer/*.deb*
+hmodules/applications/anki/anki_backup/*.colpkg
+
 result
 result-*
 
