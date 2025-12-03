@@ -15,6 +15,7 @@
     fzf
     tree
     xclip
+    neofetch
   ];
   
   programs.ssh.startAgent = true;
