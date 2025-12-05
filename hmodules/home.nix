@@ -4,7 +4,6 @@
 
   imports = [
     ./applications/packages.nix
-    ./applications/anki/anki.nix
     ./desktop/i3.nix
     ./shell/bash.nix
     ./shell/tmux.nix

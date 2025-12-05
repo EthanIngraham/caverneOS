@@ -12,9 +12,6 @@
     ghostty
     dmenu
     feh
-    (ciscoPacketTracer8.override {
-      packetTracerSource = /home/caverne/nixos-config/hmodules/applications/packettracer/CiscoPacketTracer822_amd64_signed.deb;
-    })
     anki
   ];
 

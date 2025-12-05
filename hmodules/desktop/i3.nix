@@ -79,7 +79,7 @@ xsession.windowManager.i3 = {
       ];
       
       startup = [
-        { command = "feh --bg-scale ~/Pictures/lockscreen.jpg"; always = true; notification = false; }
+        { command = "feh --bg-scale ~/Pictures/the_artists_garden.jpg"; always = true; notification = false; }
       ];
     };
   };

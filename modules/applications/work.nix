@@ -2,8 +2,7 @@
 
 {
 
-  environment.systemPackages = with pkgs; [
-    citrix_workspace 
+  environment.systemPackages = with pkgs; [ 
     zoom-us
     v4l-utils
     xdg-desktop-portal-kde
