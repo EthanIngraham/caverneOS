@@ -9,6 +9,7 @@
     ./shell/tmux.nix
     ./shell/ghostty.nix
     ./shell/neovim.nix
+    ./shell/swaylock.nix
   ];
 
   home.stateVersion = "24.11";

@@ -14,15 +14,14 @@
     vlc
     ffmpeg
     pandoc
-    
+    swaylock-effects
+
     # browser
     librewolf
     firefox
     google-chrome
 
-    # i3 related
     dmenu
-    betterlockscreen
     xdotool
 
   ];
