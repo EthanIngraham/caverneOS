@@ -25,8 +25,6 @@
     betterlockscreen
     xdotool
 
-    # usb writer
-    ventoy 
   ];
 
 }

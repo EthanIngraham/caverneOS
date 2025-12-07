@@ -5,7 +5,7 @@
   environment.systemPackages = with pkgs; [ 
     zoom-us
     v4l-utils
-    xdg-desktop-portal-kde
+    kdePackages.xdg-desktop-portal-kde
   ];
 
 }

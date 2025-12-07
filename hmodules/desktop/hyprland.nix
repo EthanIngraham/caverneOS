@@ -9,7 +9,7 @@
       
       # Startup applications
       exec-once = [
-        "hyprctl setcursor Adwaita"
+#        "hyprctl setcursor Adwaita"
         "hyprpaper"
         "waybar"
         "[workspace 1 silent] librewolf"
@@ -34,8 +34,8 @@
       };
       
       env = [
-        "XCURSOR_THEME,Adwaita"
-        "XCURSOR_SIZE,24"
+#        "XCURSOR_THEME,Adwaita"
+#        "XCURSOR_SIZE,24"
       ];
 
       # Decoration

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
 
@@ -14,7 +14,7 @@
   home.stateVersion = "24.11";
   programs.home-manager.enable = true;
 
-  home.pointerCursor = {
+  home.pointerCursor = lib.mkForce {
     name = "Adwaita";
     package = pkgs.adwaita-icon-theme;
     size = 24;

@@ -23,11 +23,17 @@
         modules = [
           ./hosts/thinkpad/configuration.nix
           sops-nix.nixosModules.sops
+          
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.caverne = import ./../hmodules/home.nix;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.caverne = import ./hmodules/home.nix;
+              
+              # This prevents home-manager from setting defaults that conflict
+              backupFileExtension = "backup";
+            };
           }
         ];
       };
@@ -37,11 +43,15 @@
         modules = [
           ./hosts/blackbridge/configuration.nix
           sops-nix.nixosModules.sops
+          
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.caverne = import ./../hmodules/home.nix;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.caverne = import ./hmodules/home.nix;
+              backupFileExtension = "backup";
+            };
           }
         ];
       };

@@ -32,6 +32,4 @@
   networking.hostName = "blackbridge";
   system.stateVersion = "24.11";
 
-  home-manager.users.caverne = import ../../hmodules/home.nix;
-
 }

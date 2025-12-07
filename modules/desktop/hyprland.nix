@@ -26,7 +26,7 @@
   services.picom.enable = false;
 
   environment.systemPackages = with pkgs; [
-    rofi-wayland
+    rofi
     wl-clipboard
     grim
     slurp

@@ -10,6 +10,8 @@
     "spotify"
     "steam"
     "nvidia-x11"
+    "packettracer"
+    "ciscoPacketTracer8"
   ];
 
   system.autoUpgrade = {
