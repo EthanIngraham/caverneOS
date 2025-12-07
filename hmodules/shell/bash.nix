@@ -12,10 +12,9 @@
       packett = "firejail --noprofile --net=none packettracer8";
       cdcc = "cd /home/caverne/workspace/ccna/notes";
       
-      nixrs = "sudo nixos-rebuild switch -I nixos-config=$HOME/nixos-config/hosts/$(hostname)/configuration.nix";
-      nixrt = "sudo nixos-rebuild test -I nixos-config=$HOME/nixos-config/hosts/$(hostname)/configuration.nix";
+      nixrs = "sudo nixos-rebuild switch --flake $HOME/nixos-config#$(hostname)"; 
+      nixrt = "sudo nixos-rebuild test --flake $HOME/nixos-config#$(hostname)";
 
-      btry = "cat /sys/class/power_supply/BAT0/capacity && echo \"%\"";
     };
     
     sessionVariables = {
