@@ -14,7 +14,6 @@
     vlc
     ffmpeg
     pandoc
-    swaylock-effects
 
     # browser
     librewolf

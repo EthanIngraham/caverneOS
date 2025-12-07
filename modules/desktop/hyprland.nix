@@ -30,7 +30,6 @@
     wl-clipboard
     grim
     slurp
-    swaylock
     mako
     hyprpaper
   ];
