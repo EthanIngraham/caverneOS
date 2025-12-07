@@ -1,15 +1,9 @@
 { config, lib, pkgs, ... }:
 
 
-let
-  sops-nix = builtins.fetchTarball {
-    url = "https://github.com/Mic92/sops-nix/archive/master.tar.gz";
-  };
-in
 {
   imports = [
     ./hardware-configuration.nix
-    "${sops-nix}/modules/sops"
     (import "${builtins.fetchTarball {
       url = "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
     }}/nixos")
