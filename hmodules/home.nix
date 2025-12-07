@@ -5,11 +5,11 @@
   imports = [
     ./applications/packages.nix
     ./desktop/hyprland.nix
+    ./desktop/hyprlock.nix
     ./shell/bash.nix
     ./shell/tmux.nix
     ./shell/ghostty.nix
     ./shell/neovim.nix
-    ./shell/swaylock.nix
   ];
 
   home.stateVersion = "24.11";

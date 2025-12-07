@@ -73,7 +73,7 @@
         "$mod, c, exec, selfservice"
         "$mod, Return, exec, ghostty"
         "$mod, d, exec, rofi -show drun"
-        "$mod, l, exec, swaylock"
+        "$mod, l, exec, hyprlock"
 
         # Window management
         "$mod SHIFT, q, killactive,"

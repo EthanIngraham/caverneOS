@@ -8,6 +8,7 @@
     dmenu
     feh
     anki
+    hyprlock
   ];
 
 }
