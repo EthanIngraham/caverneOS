@@ -11,7 +11,6 @@
     ../../modules/system/locale.nix
     ../../modules/system/boot.nix
     ../../modules/system/network.nix
-    ../../modules/system/sops.nix
     
     ../../modules/desktop/nvidia.nix # Only blackbridge
     ../../modules/desktop/i3.nix

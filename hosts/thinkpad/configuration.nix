@@ -10,7 +10,6 @@
     ../../modules/system/locale.nix
     ../../modules/system/boot.nix
     ../../modules/system/network.nix
-    ../../modules/system/sops.nix
 
     ../../modules/desktop/hyprland.nix
     ../../modules/desktop/bluetooth.nix
