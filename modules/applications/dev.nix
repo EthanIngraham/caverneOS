@@ -23,6 +23,8 @@
     ansible-lint
 
     unityhub
+
+    direnv
   ];
 
   programs.neovim = {

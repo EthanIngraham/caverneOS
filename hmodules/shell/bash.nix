@@ -7,7 +7,7 @@
     shellAliases = {
 
       starttoolsmithvenv = "source ~/ansible-venv/bin/activate";
-      cdts = "cd ~/workspace/homelab/toolsmith/src";
+      cdts = "cd ~/workspace/homelab/toolsmith/src/";
       cdn = "cd ~/nixos-config";
       packett = "firejail --noprofile --net=none packettracer8";
       cdcc = "cd /home/caverne/workspace/ccna/notes";
@@ -25,6 +25,7 @@
     };
 
     initExtra = ''
+      eval "$(direnv hook bash)"
       # Auto-attach to my tmux session
       if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
         if tmux has-session -t caverne 2>/dev/null; then
