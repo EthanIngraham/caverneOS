@@ -2,6 +2,7 @@
 
 ## Journey so far
 
+<pre>
  Initial config
  Set up text editor (Nvim)
  Modular Configuration
@@ -19,7 +20,7 @@
    Custom Module Abstractions
    Nix Testing Framework
    Try Deploy-rs
-
+</pre>
 
 ## Structure
 
