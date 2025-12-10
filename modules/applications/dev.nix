@@ -24,6 +24,8 @@
 
     unityhub
 
+    sops
+    age
     direnv
   ];
 

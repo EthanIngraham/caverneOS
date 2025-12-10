@@ -1,19 +1,5 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, hostname, ... }:
 
-let
-
-  # logic to conditionally use i3 or hyprland based on host
-  hostname = builtins.readFile /etc/hostname;
-  hostnameTrimmed = lib.removeSuffix "\n" hostname;
-  desktopImports = {
-    blackbridge = ./desktop/i3.nix;
-    thinkpad = ./desktop/hyprland.nix;
-  };
-  
-  desktopModule = desktopImports.${hostnameTrimmed} or ./desktop/hyprland.nix;
-
-  hyprlockModule = if hostnameTrimmed == "blackbridge" then [] else [ ./desktop/hyprlock.nix ];
-in
 {
   imports = [
     ./applications/packages.nix
@@ -21,8 +7,10 @@ in
     ./shell/tmux.nix
     ./shell/ghostty.nix
     ./shell/neovim.nix
-    desktopModule
-  ] ++ hyprlockModule;
+    (if hostname == "blackbridge" then ./desktop/i3.nix else ./desktop/hyprland.nix)
+  ] ++ lib.optionals (hostname != "blackbridge") [
+    ./desktop/hyprlock.nix
+  ];
   
   home.stateVersion = "24.11";
   programs.home-manager.enable = true;

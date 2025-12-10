@@ -14,7 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-
   outputs = { self, nixpkgs, home-manager, sops-nix, ... }: {
     nixosConfigurations = {
       
@@ -30,8 +29,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.caverne = import ./hmodules/home.nix;
-              
-              # This prevents home-manager from setting defaults that conflict
+              extraSpecialArgs = { hostname = "thinkpad"; };
               backupFileExtension = "backup";
             };
           }
@@ -50,6 +48,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.caverne = import ./hmodules/home.nix;
+              extraSpecialArgs = { hostname = "blackbridge"; };
               backupFileExtension = "backup";
             };
           }
