@@ -11,11 +11,11 @@
     ../../modules/system/locale.nix
     ../../modules/system/boot.nix
     ../../modules/system/network.nix
-    
+    ../../modules/system/audio.nix
+
     ../../modules/desktop/nvidia.nix # Only blackbridge
     ../../modules/desktop/i3.nix
     ../../modules/desktop/bluetooth.nix
-    ../../modules/desktop/audio.nix
     ../../modules/desktop/xdg-portals.nix        
     ../../modules/desktop/themes.nix
 

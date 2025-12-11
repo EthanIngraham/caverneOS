@@ -117,6 +117,11 @@
         "$mod, h, movefocus, l"
         "$mod, j, movefocus, d"
         "$mod, k, movefocus, u"
+
+        ", XF86AudioRaiseVolume, exec, pamixer --increase 5"
+        ", XF86AudioLowerVolume, exec, pamixer --decrease 5"
+        ", XF86AudioMute, exec, pamixer --toggle-mute"
+        ", XF86AudioMicMute, exec, pamixer --default-source --toggle-mute"
       ];
 
       bindm = [

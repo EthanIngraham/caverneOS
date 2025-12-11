@@ -11,10 +11,10 @@
     ../../modules/system/boot.nix
     ../../modules/system/network.nix
     ../../modules/system/graphics.nix
+    ../../modules/system/audio.nix
 
     ../../modules/desktop/hyprland.nix
     ../../modules/desktop/bluetooth.nix
-    ../../modules/desktop/audio.nix
     ../../modules/desktop/xdg-portals.nix        
     ../../modules/desktop/themes.nix
 
