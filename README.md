@@ -1,4 +1,4 @@
-# Personal NixOS Configuration
+# NixOS Configuration
 
 ## Journey so far
 
