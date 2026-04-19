@@ -14,4 +14,7 @@
     recursive = true;
   };
 
+  # lazy-lock.json must be writable so lazy.nvim can update it
+  xdg.configFile."nvim/lazy-lock.json".enable = false;
+
 }

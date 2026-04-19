@@ -31,4 +31,6 @@
   networking.hostName = "thinkpad";
   system.stateVersion = "24.11";
 
+  programs.nix-ld.enable = true;
+
 }

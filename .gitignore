@@ -4,6 +4,8 @@ hmodules/applications/anki/anki_backup/*.colpkg
 result
 result-*
 
+hmodules/shell/nvim/lazy-lock.json
+
 *.backup
 
 *.swp
